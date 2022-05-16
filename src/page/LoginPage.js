@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
 
 const code = new URLSearchParams(window.location.search).get("code")
-const AUTH_URL = `${process.env.REACT_APP_AUTH_URL}?client_id=${process.env.REACT_APP_CLIENT_ID}&response_type=code&redirect_uri=http://localhost:3000&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-read-playback-state%20user-modify-playback-state`
+const AUTH_URL = `${process.env.REACT_APP_AUTH_URL}?client_id=${process.env.REACT_APP_CLIENT_ID}&response_type=code&redirect_uri=http://localhost:3000&scope=`
 
 export default function LoginPage(){
 
