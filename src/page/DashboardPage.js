@@ -7,20 +7,23 @@ import useAuth from "../hook/useAuth";
 export default function DashboardPage(){
     const location = useLocation();
     const access_token = useAuth(location.state.code)
-    // const [search,setSearch] = useState('')
-    // const [searchResults,setSearchResults] = useState([])
+    const [search,setSearch] = useState('')
+    const [searchResults,setSearchResults] = useState([])
 
-    // useEffect(()=>{
-    //     if(!access_token){return}
+    useEffect(()=>{
+        if(!access_token){return}
+        console.log("useEffect")
+        
 
-    // },[access_token])
+    },[access_token])
 
-    // const _handleSearch = (txt) => {
-    //     if(!access_token || txt.length ===0 ){ 
-    //         setSearchResults([])
-    //         return
-    //     }
-    // }
+    const _handleSearch = (txt) => {
+        if(!access_token || txt.length ===0 ){ 
+            setSearchResults([])
+            return
+        }
+        setSearch(txt)
+    }
     
     return (
         <Container className="d-flex flex-column py-2" style={{height:"100vh"}}>
