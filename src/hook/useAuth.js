@@ -9,31 +9,34 @@ export default function useAuth(code){
     let navigate = useNavigate();
 
     useEffect(()=>{
-        axios.post("http://localhost:5000/login",{code}).then(res =>{
-            setAccess_token(res.data.access_token)
-            setExpires_in(res.data.expires_in)
-            setRefresh_token(res.data.refresh_token)
-        }).catch(() =>{
-            navigate("/", { replace: true });
+        console.log(code)
+        axios.post("http://localhost:5000/auth/login",{code:code}).then(res =>{
+            console.log("oui")
+            // setAccess_token(res.data.access_token)
+            // setExpires_in(res.data.expires_in)
+            // setRefresh_token(res.data.refresh_token)
+        }).catch((err) =>{
+            console.log(err)
+            // navigate("/", { replace: true });
         })
-    },[code])
+    },[])
 
 
-    useEffect(()=>{
-        if(!refresh_token || !expires_in){return}
-        const interval = setInterval(()=>{
-            axios.post("http://localhost:5000/refresh",{refresh_token}).then(res =>{
-                setAccess_token(res.data.access_token)
-                setExpires_in(res.data.expires_in)
-            }).catch(() =>{
-                navigate("/", { replace: true });
-            })
-        },(expires_in - 60)*1000)
+    // useEffect(()=>{
+    //     if(!refresh_token || !expires_in){return}
+    //     const interval = setInterval(()=>{
+    //         axios.post("http://localhost:5000/refresh",{refresh_token}).then(res =>{
+    //             setAccess_token(res.data.access_token)
+    //             setExpires_in(res.data.expires_in)
+    //         }).catch(() =>{
+    //             navigate("/", { replace: true });
+    //         })
+    //     },(expires_in - 60)*1000)
         
-        return ()=>{
-            clearInterval(interval);
-        }
-    },[refresh_token])
+    //     return ()=>{
+    //         clearInterval(interval);
+    //     }
+    // },[refresh_token])
   
     return access_token
 }
