@@ -1,9 +1,7 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import { Col } from 'react-bootstrap';
+import {useEffect } from 'react';
 
 export default function WebPlayback(props) {
-    const [album_ID, setAlbum_ID] = useState(props.album_ID);
 
     useEffect(async () => {
         window.onSpotifyWebPlaybackSDKReady = () => {
@@ -29,6 +27,6 @@ export default function WebPlayback(props) {
             });
             player.connect();
         };
-    },[album_ID]);
+    });
    return;
 }
