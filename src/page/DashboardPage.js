@@ -1,25 +1,19 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import {Container,Form,Row} from "react-bootstrap";
-import { useLocation } from "react-router-dom";
-import useAuth from "../hook/useAuth";
 import CustomNavbar from "../component/CustomNavbar";
 import TrackItem from "../component/TrackItem";
+import { ApiContext } from "../context/ApiContext";
 
 export default function DashboardPage(){
-    const location = useLocation();
     const [search,setSearch] = useState('')
     const [searchResults,setSearchResults] = useState([])
-    const access_token = useAuth(location?.state?.code)
-    
-    
+    const {access_token} = useContext(ApiContext)
 
     const _handleSearch = (txt) => {
-        console.log(txt)
         setSearch(txt)
-        if(!access_token || search.length <= 1 ){setSearchResults([])}
+        if(!access_token || txt.length <= 1 ){setSearchResults([])}
         else{
-            setSearch(txt);
             let config = {
                 headers:{
                     "Accept":"application/json",
