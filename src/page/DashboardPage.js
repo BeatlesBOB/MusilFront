@@ -11,9 +11,8 @@ export default function DashboardPage(){
     const [search,setSearch] = useState('')
     const [searchResults,setSearchResults] = useState([])
     const access_token = useAuth(location?.state?.code)
-    useEffect(()=>{
-        if(!access_token){return}
-    },[access_token])
+    
+    
 
     const _handleSearch = (txt) => {
         console.log(txt)
