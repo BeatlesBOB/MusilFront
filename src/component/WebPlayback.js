@@ -13,17 +13,19 @@ export default function WebPlayback(props) {
                 volume: 0.5
             });    
             player.addListener('ready', ({ device_id }) => {
-                let data = {"context_uri": `spotify:album:${props.album_ID}`,"position_ms": 0}
+                let data = JSON.stringify({"context_uri": `spotify:album:${props.album_ID}`,"position_ms": 0})
                 let config = { 
-                    method:"PUT",
                     headers:{
                         "Accept":"application/json",
                         "Content-Type":"application/json",
-                        "Authorization": `Bearer ${token}`
+                        "Authorization": `Bearer ${props.access_token}`
                     },
-                    body:JSON.stringify(data)
                 }
                 axios.put(`https://api.spotify.com/v1/me/player/play?${device_id}`,data,config)
+            });
+
+            player.addListener('player_state_changed', ({position,duration,track_window: { current_track }}) => {
+                props.setCurrentTrack(current_track)
             });
             player.connect();
         };
