@@ -3,6 +3,7 @@ import { Container, Row } from 'react-bootstrap';
 import WebPlayback from "../component/WebPlayback"
 import VinyleItem from "../component/VinyleItem"
 import {ApiContext} from '../context/ApiContext';
+import { Socket } from 'socket.io-client';
 
 export default function VinylePage(props) {
     const {access_token} = useContext(ApiContext)
@@ -15,6 +16,9 @@ export default function VinylePage(props) {
         socket.on("QRCODE",(data)=>{
             setAlbum(data)
         }); 
+        return () =>{
+            socket.off("QRCODE")
+        }
     },[socket]);
 
 
