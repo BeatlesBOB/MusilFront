@@ -25,11 +25,11 @@ export default function WebPlayback(props) {
                         "Authorization": `Bearer ${props.access_token}`
                     },
                 }
-                axios.put(`https://api.spotify.com/v1/me/player/play?${device_id}`,data,config)
+                axios.put(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}`,data,config)
             });
 
             player.addListener('player_state_changed', ({position,duration,track_window: { current_track }}) => {
-                props.setCurrentTrack(current_track)
+                // props.setCurrentTrack(current_track)
             });
             player.connect();
         };
