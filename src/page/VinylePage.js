@@ -24,14 +24,17 @@ export default function VinylePage(props) {
 
    return (
        <Container fluid>
-           <Row>
+           <Row className='g-0'>
                 {
-                    Array.from({nb_vinyle}).map((x,i) => (
-                        <VinyleItem isSelected={i===album.position?true:false} access_token={access_token} currentTrack={currentTrack}/>
+                    Array.from(Array(nb_vinyle).keys()).map((x,i) => (
+                        <VinyleItem isSelected={i===album?.position?true:false} access_token={access_token} currentTrack={currentTrack} key={i}/>
                     ))
                 }
            </Row>
-           <WebPlayback album_ID={album.album_ID} access_token={access_token} setCurrentTrack={setCurrentTrack} />
+           {
+               album ? <WebPlayback album_uri={album?.album_uri} access_token={access_token} setCurrentTrack={setCurrentTrack} />:null
+           }
+           
        </Container>
     );
 }

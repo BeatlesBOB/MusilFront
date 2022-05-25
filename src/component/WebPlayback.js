@@ -3,7 +3,13 @@ import {useEffect } from 'react';
 
 export default function WebPlayback(props) {
 
-    useEffect(async () => {
+    useEffect( () => {
+        const script = document.createElement("script");
+        script.src = "https://sdk.scdn.co/spotify-player.js";
+        script.async = true;
+    
+        document.body.appendChild(script);
+
         window.onSpotifyWebPlaybackSDKReady = () => {
             const player = new window.Spotify.Player({
                 name: 'Musilapp',
@@ -11,7 +17,7 @@ export default function WebPlayback(props) {
                 volume: 0.5
             });    
             player.addListener('ready', ({ device_id }) => {
-                let data = JSON.stringify({"context_uri": `spotify:album:${props.album_ID}`,"position_ms": 0})
+                let data = JSON.stringify({"context_uri": `${props.album_uri}`,"position_ms": 0})
                 let config = { 
                     headers:{
                         "Accept":"application/json",

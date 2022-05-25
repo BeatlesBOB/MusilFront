@@ -4,11 +4,10 @@ import QRCode from "react-qr-code";
 
 export default function TrackItem(props){
     const [show, setShow] = useState(false);
-    const [album_ID, setAlbum_ID] = useState(props?.key);
     const [position, setPosition] = useState(-1);
     const [value, setValue] = useState(
         {
-            album_ID,
+            album_uri:props?.album.uri,
             position
         }
     );
@@ -18,7 +17,7 @@ export default function TrackItem(props){
     const handlePosition = (npos) => { 
         setPosition(npos)
         setValue(prevState=>({
-            album_id:prevState.album_ID,
+            album_uri:prevState.album_uri,
             position:npos
         }))
     };
@@ -50,7 +49,11 @@ export default function TrackItem(props){
                                 </Form.Text>
                             </Form.Group>
                         </Form>
-                        <QRCode value={`{album_ID:${value.album_ID},position:${value.position}`}/>
+                        <QRCode value={`{album_uri:${value.album_uri},position:${value.position}}`}/>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Valeur</Form.Label>
+                            <Form.Control value={`{album_uri:${value.album_uri},position:${value.position}}`} type="text"/>
+                        </Form.Group>
                     </Modal.Body>
                 <Modal.Footer>
                     <Button variant="success" onClick={toggleModal}>Close</Button>

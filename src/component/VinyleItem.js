@@ -18,9 +18,9 @@ export default function VinyleItem(props) {
         // })
     })
    return (
-       <Col xs={3} className="d-flex flex-direction-column" style={{height:"50vh"}}>
-           <div style={{height:"50%",width:"100%"}}></div>
-           <div style={{height:"50%",width:"100%"}}>
+       <Col xs={3} className="d-flex flex-column" style={{height:"50vh"}}>
+           <div style={{height:"80%",width:"100%"}}></div>
+           <div style={{height:"20%",width:"100%"}} className="d-flex justify-content-center mt-2">
                 {
                     props.isSelect?<p>Now playing {props.currentTrack.name}</p>:null
                 }

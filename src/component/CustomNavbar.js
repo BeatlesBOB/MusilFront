@@ -16,6 +16,9 @@ export default function CustomNavbar(){
                     <Link to={"/setup"} style={{color:"white",textDecoration:"none",padding:"0.5rem 1rem"}}>
                         Setup
                     </Link>
+                    <Link to={"/vinyle"} style={{color:"white",textDecoration:"none",padding:"0.5rem 1rem"}}>
+                        Vinyle
+                    </Link>
 
                     
                     {/* <Nav.Link href="/setup">Setup</Nav.Link>

@@ -21,7 +21,7 @@ export default function DashboardPage(){
                     "Authorization": `Bearer ${access_token}`
                 }
             }
-            axios.get(`https://api.spotify.com/v1/search?q=${txt}&type=album`,config)
+            axios.get(`https://api.spotify.com/v1/search?q=${txt}&type=album&market=FR`,config)
             .then((res)=>{
                 setSearchResults(res.data.albums.items)
             })
@@ -35,6 +35,7 @@ export default function DashboardPage(){
                 <Form.Control type="search" placeholder="Recherche.." value={search} onChange={(e)=>{_handleSearch(e.target.value)}}></Form.Control>
                 <Row className="flex-grow-1 my-2" style={{overflowY:"auto",height:"80vh"}}>
                     {
+                        
                         searchResults.map(album=>(
                             <TrackItem album={album} key={album.id}/>
                         ))
