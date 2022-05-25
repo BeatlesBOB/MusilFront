@@ -29,10 +29,10 @@ export default function WebPlayback(props) {
             });
 
             player.addListener('player_state_changed', ({position,duration,track_window: { current_track }}) => {
-                // props.setCurrentTrack(current_track)
+                props.setCurrentTrack(current_track)
             });
             player.connect();
         };
-    });
+    },[]);
    return;
 }

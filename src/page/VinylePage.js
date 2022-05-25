@@ -21,6 +21,9 @@ export default function VinylePage(props) {
         }
     },[socket]);
 
+    const _handletest = (t) =>{
+        console.log(t)
+    }
 
    return (
        <Container fluid>
@@ -32,7 +35,7 @@ export default function VinylePage(props) {
                 }
            </Row>
            {
-               album ? <WebPlayback album_uri={album?.album_uri} access_token={access_token} setCurrentTrack={setCurrentTrack} />:null
+               album ? <WebPlayback album_uri={album?.album_uri} access_token={access_token} setCurrentTrack={setCurrentTrack} t={_handletest} />:null
            }
            
        </Container>
