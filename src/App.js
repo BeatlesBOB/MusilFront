@@ -3,6 +3,7 @@ import DashboardPage from './page/DashboardPage';
 import SetupPage from './page/SetupPage';
 import VinylePage from './page/VinylePage';
 import {ApiProvider} from './context/ApiContext';
+import './asset/style.css';
 
 import {Routes,Route} from "react-router-dom"
 function App() {

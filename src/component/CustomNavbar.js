@@ -8,7 +8,7 @@ export default function CustomNavbar(){
     return (
         <Navbar bg="success" variant="dark">
             <Container>
-                <Navbar.Brand>Navbar</Navbar.Brand>
+                <Navbar.Brand>Musilapp</Navbar.Brand>
                 <Nav className="me-auto">
                     <Link to={"/dashboard"} style={{color:"white",textDecoration:"none",padding:"0.5rem 1rem"}}>
                         Dashboard

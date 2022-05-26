@@ -3,7 +3,6 @@ import { Container, Row } from 'react-bootstrap';
 import WebPlayback from "../component/WebPlayback"
 import VinyleItem from "../component/VinyleItem"
 import {ApiContext} from '../context/ApiContext';
-import { Socket } from 'socket.io-client';
 
 export default function VinylePage(props) {
     const {access_token} = useContext(ApiContext)
@@ -26,7 +25,7 @@ export default function VinylePage(props) {
     }
 
    return (
-       <Container fluid>
+       <Container fluid style={{backgroundColor:"rgba(0,0,0,.1)"}}>
            <Row className='g-0'>
                 {
                     Array.from(Array(nb_vinyle).keys()).map((x,i) => (

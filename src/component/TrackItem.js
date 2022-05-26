@@ -1,6 +1,6 @@
 import React,{useEffect, useState} from "react";
 import {Col,Card,Button,Form,Modal} from "react-bootstrap";
-import QRCode from "react-qr-code";
+import {QRCodeCanvas} from 'qrcode.react';
 
 export default function TrackItem(props){
     const [show, setShow] = useState(false);
@@ -49,10 +49,10 @@ export default function TrackItem(props){
                                 </Form.Text>
                             </Form.Group>
                         </Form>
-                        <QRCode value={`{album_uri:${value.album_uri},position:${value.position}}`}/>
+                        <QRCodeCanvas size={300} value={`{"album_uri":"${value.album_uri}","position":${value.position}}`}/>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Valeur</Form.Label>
-                            <Form.Control value={`{album_uri:${value.album_uri},position:${value.position}}`} type="text"/>
+                            <Form.Control max={7} value={`{"album_uri":"${value.album_uri}","position":${value.position}}`} type="text" readOnly={true}/>
                         </Form.Group>
                     </Modal.Body>
                 <Modal.Footer>

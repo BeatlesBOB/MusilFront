@@ -11,12 +11,14 @@ export default function SetupPage(){
                 {
                     Array.from(Array(8).keys()).map((x,i) => (
                         
-                        <Col xs={3} className="d-flex flex-column border border-success" style={{height:"50vh",backgroundColor:i===selected?"red":null}} key={i}>
+                        <Col xs={3} className="d-flex flex-column border border-dark" style={{height:"50vh",backgroundColor:i===selected?"#ffc107":null}} key={i}>
                             <div style={{height:"80%",width:"100%"}} className="bg-success">
 
                             </div>
                             <div style={{height:"20%",width:"100%"}} className="d-flex justify-content-center mt-2">
-                                <p>Now playing puette</p>
+                                {
+                                   i===selected?<p className="fs-6 track">Now playing puette</p>:null 
+                                }
                             </div>
                         </Col>
                     ))
