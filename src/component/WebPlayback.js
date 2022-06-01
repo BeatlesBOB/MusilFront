@@ -1,9 +1,9 @@
 import axios from 'axios';
-import React,{useEffect, useState } from 'react';
+import React,{createRef, useEffect, useState } from 'react';
 
 export default function WebPlayback(props) {
     
-    const [player,setPlayer] = useState();
+    const Web_player = createRef();
 
     useEffect( () => {
         const script = document.createElement("script");
@@ -17,7 +17,8 @@ export default function WebPlayback(props) {
                 getOAuthToken: cb => { cb(props.access_token); },
                 volume: 0.2
             }); 
-            setPlayer(player)
+            Web_player.current = player
+            
             player.addListener('ready', async ({ device_id }) => {
                 let data = JSON.stringify({"context_uri": `${props.album_uri}`,"position_ms": 0})
                 let config = { 
@@ -37,11 +38,11 @@ export default function WebPlayback(props) {
             player.connect();
         };
 
-        return () =>{
-            //player.pause()
-            console.warn(player)
+        return () => {
+            console.log(Web_player)
         }
+
     },[]);  
-    
+      
     
 }

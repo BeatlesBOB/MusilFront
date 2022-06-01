@@ -9,7 +9,7 @@ export default function useAuth(code){
     let navigate = useNavigate();
 
     useEffect(()=>{
-        axios.post("http://localhost:5000/auth/login",{code:code}).then(res =>{
+        axios.post(`${process.env.REACT_APP_BACK_URL}/auth/login`,{code:code}).then(res =>{
             setAccess_token(res.data.access_token)
             setExpires_in(res.data.expires_in)
             setRefresh_token(res.data.refresh_token)
@@ -22,7 +22,7 @@ export default function useAuth(code){
     useEffect(()=>{
         if(!refresh_token || !expires_in){return}
         const interval = setInterval(()=>{
-            axios.post("http://localhost:5000/auth/refresh",{refresh_token}).then(res =>{
+            axios.post(`${process.env.REACT_APP_BACK_URL}/auth/refresh`,{refresh_token}).then(res =>{
                 setAccess_token(res.data.access_token)
                 setExpires_in(res.data.expires_in)
                 console.log(res.data)
